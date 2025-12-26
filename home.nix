@@ -44,15 +44,17 @@
       fastfetch
       alacritty
 
-      # Messaging
+      # Online
       signal-desktop
       firefox
+      ungoogled-chromium
 
       # Fonts
       nerd-fonts.caskaydia-cove
 
       # Editors
       neovim
+      vscode
 
       # Languages
       cargo

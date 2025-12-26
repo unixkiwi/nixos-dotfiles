@@ -1,0 +1,13 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./shell
+    ./nvim
+    ./theme
+    ./utilities
+  ];
+}

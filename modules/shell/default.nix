@@ -8,11 +8,14 @@
       "tree" = "la --tree";
 
       "df" = "duf";
+      "cat" = "bat --plain";
 
       "rebuild" = "sudo nixos-rebuild switch --flake .";
     };
     sessionVariables = {
       EDITOR = "nvim";
+      MANPAGER = "bat --plain";
+      PAGER = "bat --plain";
     };
     sessionPath = [
       "$HOME/.local/bin"

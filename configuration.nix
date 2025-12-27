@@ -134,9 +134,12 @@
   services.blueman.enable = true;
 
   # Disk/Mounting stuff
-  services.devmon.enable = true;
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
+  services = {
+    devmon.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
+  };
+  boot.supportedFilesystems = ["ntfs"];
 
   # Android
   programs.adb.enable = true;

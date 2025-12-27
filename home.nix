@@ -56,6 +56,9 @@
       neovim
       vscode
 
+      # Photo stuff
+      darktable
+
       # Languages
       cargo
       rustc

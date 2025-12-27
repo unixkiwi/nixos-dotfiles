@@ -15,6 +15,10 @@
       enable = true;
       autostart = true;
     };
+    nh = {
+      enable = true;
+      flake = "/home/kiwi/nixos-dotfiles";
+    };
     tealdeer = {
       enable = true;
       settings = {

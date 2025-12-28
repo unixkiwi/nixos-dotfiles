@@ -6,7 +6,9 @@
       "ll" = "ls -l";
       "l" = "la";
       "tree" = "la --tree";
+      "c" = "clear";
 
+      "lg" = "lazygit";
       "df" = "duf";
       "cat" = "bat --plain";
 

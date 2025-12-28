@@ -48,6 +48,7 @@
       signal-desktop
       firefox
       ungoogled-chromium
+      tor-browser
 
       # Fonts
       nerd-fonts.caskaydia-cove
@@ -65,6 +66,7 @@
       flutter
 
       # Utils
+      ncdu
       btop
       bat
       fd

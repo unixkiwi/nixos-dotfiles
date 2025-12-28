@@ -69,6 +69,7 @@
       # Utils
       ncdu
       btop
+      nvtopPackages.full
       bat
       fd
       rsync

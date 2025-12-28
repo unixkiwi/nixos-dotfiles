@@ -57,8 +57,9 @@
       neovim
       vscode
 
-      # Photo stuff
+      # Media stuff
       darktable
+      vlc
 
       # Languages
       cargo
@@ -75,6 +76,7 @@
       tmux
       tealdeer
       ripgrep
+      gparted
     ];
   };
 

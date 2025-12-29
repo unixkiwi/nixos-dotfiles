@@ -1,4 +1,4 @@
-{ pkgs }:
+{ inputs, pkgs, ... }:
 {
   # Display Manager
   services.displayManager.sddm = {

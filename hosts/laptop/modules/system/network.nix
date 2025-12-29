@@ -1,4 +1,4 @@
-{ }:
+{ inputs, ... }:
 {
   # Hostname
   networking.hostName = "laptop";

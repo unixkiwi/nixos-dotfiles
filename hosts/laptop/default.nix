@@ -1,4 +1,4 @@
-inputs:
+{ inputs, ... }:
 inputs.nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
   specialArgs = { inherit inputs; };
@@ -41,7 +41,7 @@ inputs.nixpkgs.lib.nixosSystem {
       users.users.kiwi = {
         isNormalUser = true;
         description = "kiwi";
-        shell = pkgs.fish;
+        shell = inputs.nixpkgs.legacyPackages."x86_64-linux".fish;
         extraGroups = [
           "networkmanager"
           "wheel"

@@ -1,4 +1,4 @@
-{ pkgs }:
+{ inputs, pkgs, ... }:
 {
   # Shell
   programs.fish.enable = true;

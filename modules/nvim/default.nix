@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nvf = {
     defaultEditor = true;
     enable = true;
@@ -98,11 +99,11 @@
             treesitter.enable = true;
             format = {
               enable = true;
-              type = ["nixfmt"];
+              type = [ "nixfmt" ];
             };
             lsp = {
               enable = true;
-              servers = ["nixd"];
+              servers = [ "nixd" ];
             };
           };
         };
@@ -134,13 +135,13 @@
               nixpkgs = {
                 expr = "import <nixpkgs> { }";
                 formatting = {
-                  command = ["nixfmt"];
+                  command = [ "nixfmt" ];
                 };
                 nixos = {
-                  expr = "(builtins.getFlake \"/home/kiwi/nixos-dotfiles\").nixosConfigurations.nixos.options";
+                  expr = "(builtins.getFlake \"/home/kiwi/nixos-dotfiles\").nixosConfigurations.laptop.options";
                 };
                 home-manager = {
-                  expr = "(builtins.getFlake \"/home/kiwi/nixos-dotfiles\").nixosConfigurations.nixos.options.home-manager.users.type.getSubOptions []";
+                  expr = "(builtins.getFlake \"/home/kiwi/nixos-dotfiles\").nixosConfigurations.laptop.options.home-manager.users.type.getSubOptions []";
                 };
               };
             };

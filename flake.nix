@@ -22,45 +22,9 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    stylix,
-    home-manager,
-    ...
-  } @ inputs: {
+  outputs = inputs: {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          stylix.nixosModules.stylix
-          ./configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            nixpkgs.overlays = [inputs.nix-firefox-addons.overlays.default];
-
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "nixos-backup-file";
-
-              extraSpecialArgs = {
-                inherit
-                  inputs
-                  ;
-              };
-
-              users.kiwi = {
-                imports = [
-                  inputs.nvf.homeManagerModules.default
-
-                  ./home.nix
-                ];
-              };
-            };
-          }
-        ];
-      };
+      laptop = import ./hosts/laptop inputs;
     };
   };
 }

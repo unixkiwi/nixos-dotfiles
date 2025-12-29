@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./modules
   ];
@@ -14,28 +15,6 @@
   };
 
   home = {
-    file.".config/keepassxc/keepassxc.ini" = {
-      force = true;
-      text = ''
-                [Browser]
-        Enabled=true
-        MatchUrlScheme=false
-        SearchInAllDatabases=true
-
-        [GUI]
-        ApplicationTheme=dark
-        ColorPasswords=true
-        CompactMode=false
-        HidePasswords=false
-        MinimizeOnClose=true
-        MinimizeToTray=true
-        ShowTrayIcon=true
-        TrayIconAppearance=monochrome-dark
-
-        [General]
-        ConfigVersion=2
-      '';
-    };
     username = "kiwi";
     homeDirectory = "/home/kiwi";
     stateVersion = "25.05";
@@ -61,6 +40,7 @@
       # Media stuff
       darktable
       vlc
+      localsend
 
       # Languages
       cargo

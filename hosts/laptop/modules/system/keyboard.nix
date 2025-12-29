@@ -1,4 +1,4 @@
-{ }:
+{ inputs, ... }:
 {
   # Keymap in X11
   services.xserver.xkb = {

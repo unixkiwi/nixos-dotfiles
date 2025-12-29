@@ -1,4 +1,4 @@
-{ }:
+{ inputs, ... }:
 {
   # Audio
   services.pipewire = {

@@ -1,4 +1,4 @@
-{ }:
+{ inputs, ... }:
 {
   # Some mounting stuff
   services = {

@@ -1,4 +1,4 @@
-{ }:
+{ inputs, ... }:
 {
   # Timezone
   time.timeZone = "Europe/Berlin";

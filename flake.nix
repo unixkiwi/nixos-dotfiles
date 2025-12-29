@@ -22,9 +22,11 @@
     };
   };
 
-  outputs = inputs: {
-    nixosConfigurations = {
-      laptop = import ./hosts/laptop inputs;
+  outputs =
+    { nixpkgs, ... }@inputs:
+    {
+      nixosConfigurations = {
+        laptop = import ./hosts/laptop { inherit inputs; };
+      };
     };
-  };
 }

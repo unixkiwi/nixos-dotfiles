@@ -1,4 +1,4 @@
-{ }:
+{ inputs, ... }:
 {
   boot = {
     # Clear tmp

@@ -56,6 +56,7 @@
       # Editors
       neovim
       vscode
+      android-studio-full
 
       # Media stuff
       darktable

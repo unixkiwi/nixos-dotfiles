@@ -90,7 +90,10 @@
   users.defaultUserShell = pkgs.fish;
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    android_sdk.accept_license = true;
+  };
 
   environment.systemPackages = with pkgs; [
     neovim

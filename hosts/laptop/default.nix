@@ -19,11 +19,20 @@ inputs.nixpkgs.lib.nixosSystem {
         inputs.home-manager.nixosModules.home-manager
       ];
 
-      # Turn on Flakes
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      # Nix settings
+      nix.settings = {
+        # Turn on Flakes
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+
+        # Auto optimise
+        auto-optimise-store = true;
+
+        # Git warning
+        warn-dirty = false;
+      };
 
       # Firefox addonsoverwrite
       nixpkgs.overlays = [ inputs.nix-firefox-addons.overlays.default ];

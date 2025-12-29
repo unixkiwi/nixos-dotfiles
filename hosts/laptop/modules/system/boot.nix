@@ -1,6 +1,9 @@
 { }:
 {
   boot = {
+    # Clear tmp
+    tmp.cleanOnBoot = true;
+
     # Grub
     loader = {
       timeout = 2;

@@ -3,7 +3,7 @@
   imports = [
     ./audio.nix
     ./bluetooth.nix
-    ./bootloader.nix
+    ./boot.nix
     ./display-manager.nix
     ./keyboard.nix
     ./localization.nix

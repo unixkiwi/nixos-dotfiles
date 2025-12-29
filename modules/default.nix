@@ -10,5 +10,6 @@
     ./theme
     ./utilities
     ./hypr
+    ./browser
   ];
 }

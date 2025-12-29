@@ -14,51 +14,53 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs =
-    {
-      nixpkgs,
-      stylix,
-      home-manager,
-      nvf,
-      ...
-    }@inputs:
-    {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            stylix.nixosModules.stylix
-            ./configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                backupFileExtension = "nixos-backup-file";
+  outputs = {
+    nixpkgs,
+    stylix,
+    home-manager,
+    ...
+  } @ inputs: {
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [
+          stylix.nixosModules.stylix
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            nixpkgs.overlays = [inputs.nix-firefox-addons.overlays.default];
 
-                extraSpecialArgs = {
-                  inherit
-                    inputs
-                    ;
-                };
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "nixos-backup-file";
 
-                users.kiwi = {
-                  imports = [
-                    inputs.nvf.homeManagerModules.default
-                    ./home.nix
-                  ];
-                };
+              extraSpecialArgs = {
+                inherit
+                  inputs
+                  ;
               };
-            }
-          ];
-        };
+
+              users.kiwi = {
+                imports = [
+                  inputs.nvf.homeManagerModules.default
+
+                  ./home.nix
+                ];
+              };
+            };
+          }
+        ];
       };
     };
+  };
 }

@@ -6,7 +6,6 @@
 
     # Online
     signal-desktop
-    firefox
     ungoogled-chromium
     tor-browser
 

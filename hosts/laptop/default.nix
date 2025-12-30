@@ -41,7 +41,6 @@ inputs.nixpkgs.lib.nixosSystem {
       users.users.kiwi = {
         isNormalUser = true;
         description = "kiwi";
-        shell = inputs.nixpkgs.legacyPackages."x86_64-linux".fish;
         extraGroups = [
           "networkmanager"
           "wheel"

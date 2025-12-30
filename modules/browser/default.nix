@@ -1,10 +1,5 @@
 { inputs, pkgs, ... }:
 {
-  home.file.".librewolf/librewolf.overrides.cfg".text = ''
-    defaultPref("middlemouse.paste", false);
-    defaultPref("general.autoScroll", true);
-  '';
-
   home.file.".librewolf/kiwi/chrome/firefox-gnome-theme".source = inputs.firefox-gnome-theme;
 
   programs.librewolf = {
@@ -29,6 +24,8 @@
         "gnomeTheme.hideSingleTab" = true;
         "gnomeTheme.normalWidthTabs" = false;
         "gnomeTheme.tabsAsHeaderbar" = false;
+        "middlemouse.paste" = false;
+        "general.autoScroll" = true;
       };
 
       userChrome = ''

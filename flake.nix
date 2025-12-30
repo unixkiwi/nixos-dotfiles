@@ -21,6 +21,11 @@
 
     nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
 
+    betterfox = {
+      url = "github:heitoraugustoln/betterfox-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";

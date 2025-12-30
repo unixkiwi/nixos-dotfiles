@@ -5,7 +5,7 @@ inputs.nixpkgs.lib.nixosSystem {
   modules = [
     {
       imports = [
-        ../../hardware-configuration.nix
+        ./hardware-configuration.nix
         ./modules/system
         ./modules/development
         ./modules/nixos/desktop.nix
@@ -58,7 +58,7 @@ inputs.nixpkgs.lib.nixosSystem {
         };
       };
 
-      # Enable XDG; needed by flatpak I think
+      # Enable XDG stuff
       xdg.portal.enable = true;
 
       home-manager = {
@@ -72,8 +72,26 @@ inputs.nixpkgs.lib.nixosSystem {
           imports = [
             inputs.nvf.homeManagerModules.default
 
-            ../../home.nix
+            ./modules/home/packages.nix
+            ../../modules
           ];
+
+          xdg.autostart.enable = true;
+
+          # Show news
+          news.display = "show";
+
+          # Allow fc to find hm fonts
+          fonts.fontconfig.enable = true;
+
+          home = {
+            username = "kiwi";
+            homeDirectory = "/home/kiwi";
+
+            stateVersion = "25.05";
+          };
+
+          programs.home-manager.enable = true;
         };
       };
 

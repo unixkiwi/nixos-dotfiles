@@ -1,8 +1,11 @@
-{pkgs, ...}: {
+{ inputs, pkgs, ... }:
+{
   home.file.".librewolf/librewolf.overrides.cfg".text = ''
     defaultPref("middlemouse.paste", false);
     defaultPref("general.autoScroll", true);
   '';
+
+  home.file.".librewolf/kiwi/chrome/firefox-gnome-theme".source = inputs.firefox-gnome-theme;
 
   programs.librewolf = {
     enable = true;
@@ -17,6 +20,23 @@
           keepassxc-browser
         ];
       };
+
+      settings = {
+        "browser.tabs.loadInBackground" = true;
+        "widget.gtk.rounded-bottom-corners.enabled" = true;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "svg.context-properties.content.enabled" = true;
+        "gnomeTheme.hideSingleTab" = true;
+        "gnomeTheme.normalWidthTabs" = false;
+        "gnomeTheme.tabsAsHeaderbar" = false;
+      };
+
+      userChrome = ''
+        @import "firefox-gnome-theme/userChrome.css";
+      '';
+      userContent = ''
+        @import "firefox-gnome-theme/userContent.css";
+      '';
 
       search = {
         default = "ecosia";
@@ -47,7 +67,7 @@
             urls = [
               {
                 template = "https://mynixos.com/search";
-                definedAliases = ["@mn"];
+                definedAliases = [ "@mn" ];
                 params = [
                   {
                     name = "q";
@@ -63,7 +83,7 @@
             urls = [
               {
                 template = "https://search.nixos.org/packages";
-                definedAliases = ["@np"];
+                definedAliases = [ "@np" ];
                 params = [
                   {
                     name = "channel";

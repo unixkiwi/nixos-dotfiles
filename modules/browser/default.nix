@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, lib, ... }:
 {
   imports = [ inputs.betterfox.modules.homeManager.betterfox ];
 
@@ -121,6 +121,8 @@
           Status = "locked";
         };
       };
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
       SanitizeOnShutdown = {
         Cache = true;
         Cookies = true;
@@ -130,13 +132,115 @@
         OfflineApps = false;
         Locked = true;
       };
+      SearchBar = "unified";
+      SearchEngines = {
+        Add = [
+          {
+            Alias = "@np";
+            Description = "Search in NixOS Packages";
+            IconURL = "https://nixos.org/favicon.png";
+            Method = "GET";
+            Name = "NixOS Packages";
+            URLTemplate = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
+          }
+          {
+            Alias = "@mynix";
+            Description = "Search in mynixos";
+            IconURL = "https://mynixos.com/favicon.ico";
+            Method = "GET";
+            Name = "MyNixOS";
+            URLTemplate = "https://mynixos.com/search?q={searchTerms}";
+          }
+          {
+            Alias = "@no";
+            Description = "Search in NixOS Options";
+            IconURL = "https://nixos.org/favicon.png";
+            Method = "GET";
+            Name = "NixOS Options";
+            URLTemplate = "https://search.nixos.org/options?from=0&size=200&sort=relevance&type=packages&query={searchTerms}";
+          }
+        ];
+      };
       # Extensions
       ExtensionSettings = {
+        "*" = {
+          installation_mode = "blocked";
+          blocked_install_message = "Extensions must be declared and installed within the nix config!";
+        };
         "uBlock0@raymondhill.net" = {
-          default_area = "menupanel";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-          installation_mode = "normal_installed";
+          default_area = "navbar";
+          installation_mode = "force_installed";
           private_browsing = true;
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+        };
+        "addon@darkreader.org" = {
+          default_area = "navbar";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
+        };
+        "keepassxc-browser@keepassxc.org" = {
+          default_area = "navbar";
+          installation_mode = "force_installed";
+          private_browsing = true;
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/keepassxc-browser/latest.xpi";
+        };
+      };
+      # See https://github.com/Arcanyx-org/NiXium
+      "3rdparty".Extensions = {
+        "uBlock0@raymondhill.net".adminSettings = {
+          userSettings = rec {
+            advancedUserEnabled = true;
+            autoUpdate = true;
+            cloudStorageEnabled = false;
+            importedLists = [
+              "https://raw.githubusercontent.com/yokoffing/filterlists/main/privacy_essentials.txt"
+              "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.mini.txt"
+              "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+              "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
+              "https://raw.githubusercontent.com/liamengland1/miscfilters/master/antipaywall.txt"
+              "https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt"
+              "https://raw.githubusercontent.com/iam-py-test/uBlock-combo/main/list.txt"
+            ];
+            externalLists = lib.concatStringsSep "\n" importedLists;
+          };
+          selectedFilterLists = [
+            "user-filters"
+            "ublock-filters"
+            "ublock-badware"
+            "ublock-privacy"
+            "ublock-quick-fixes"
+            "ublock-unbreak"
+            "ublock-experimental"
+            "easylist"
+            "adguard-generic"
+            "easyprivacy"
+            "adguard-spyware-url"
+            "urlhaus-1"
+            "curben-phishing"
+            "plowe-0"
+            "fanboy-cookiemonster"
+            "ublock-cookies-easylist"
+            "adguard-cookies"
+            "ublock-cookies-adguard"
+            "fanboy-ai-suggestions"
+            "easylist-chat"
+            "easylist-newsletters"
+            "easylist-notifications"
+            "easylist-annoyances"
+            "adguard-mobile-app-banners"
+            "adguard-other-annoyances"
+            "adguard-popup-overlays"
+            "adguard-widgets"
+            "ublock-annoyances"
+            "DEU-0"
+            "https://raw.githubusercontent.com/yokoffing/filterlists/main/privacy_essentials.txt"
+            "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.mini.txt"
+            "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+            "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
+            "https://raw.githubusercontent.com/liamengland1/miscfilters/master/antipaywall.txt"
+            "https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt"
+            "https://raw.githubusercontent.com/iam-py-test/uBlock-combo/main/list.txt"
+          ];
         };
       };
     };
@@ -175,14 +279,16 @@
 
     profiles.kiwi = {
       isDefault = true;
-      extensions = {
-        force = true;
-        packages = with pkgs.firefoxAddons; [
-          # ublock-origin
-          darkreader
-          keepassxc-browser
-        ];
-      };
+      /*
+        extensions = {
+          force = true;
+          packages = with pkgs.firefoxAddons; [
+            # ublock-origin
+            darkreader
+            keepassxc-browser
+          ];
+        };
+      */
 
       /*
         settings = {

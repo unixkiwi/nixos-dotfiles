@@ -19,6 +19,7 @@
       DisplayBookmarksToolbar = "never";
       DontCheckDefaultBrowser = true;
       DownloadDirectory = "\${home}/Downloads";
+      # Exclude on clear
       Cookies = {
         Allow = [
           "https://github.com"
@@ -129,6 +130,7 @@
         OfflineApps = false;
         Locked = true;
       };
+      # Extensions
       ExtensionSettings = {
         "uBlock0@raymondhill.net" = {
           default_area = "menupanel";

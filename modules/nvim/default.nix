@@ -11,6 +11,12 @@
           shiftwidth = 2;
         };
 
+        clipboard = {
+          enable = true;
+          providers.wl-copy.enable = true;
+          registers = "unnamedplus";
+        };
+
         theme = {
           enable = true;
           name = "tokyonight";

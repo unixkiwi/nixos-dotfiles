@@ -3,11 +3,9 @@
   imports = [ inputs.betterfox.modules.homeManager.betterfox ];
 
   home.file.".mozilla/firefox/kiwi/chrome/firefox-gnome-theme".source = inputs.firefox-gnome-theme;
-  # home.file.".librewolf/kiwi/chrome/firefox-gnome-theme".source = inputs.firefox-gnome-theme;
 
   programs.firefox = {
     enable = true;
-    # package = pkgs.librewolf-bin;
 
     policies = {
       AppAutoUpdate = false;
@@ -41,6 +39,9 @@
         Locked = true;
       };
       HardwareAcceleration = true;
+      Homepage = {
+        StartPage = "previous-session";
+      };
       NoDefaultBookmarks = true;
       OfferToSaveLoginsDefault = false;
       PasswordManagerEnabled = false;
@@ -80,10 +81,6 @@
         };
         "sidebar.visibility" = {
           Value = "hide-sidebar";
-          Status = "locked";
-        };
-        "browser.startup.homepage" = {
-          Value = "https://github.com";
           Status = "locked";
         };
         "browser.contentblocking.category" = {
@@ -136,7 +133,7 @@
         "uBlock0@raymondhill.net" = {
           default_area = "menupanel";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-          installation_mode = "force_installed";
+          installation_mode = "normal_installed";
           private_browsing = true;
         };
       };

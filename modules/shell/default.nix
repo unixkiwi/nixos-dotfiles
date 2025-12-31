@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home = {
     shellAliases = {
       "ls" = "eza";
@@ -18,6 +19,7 @@
       EDITOR = "nvim";
       MANPAGER = "bat --plain";
       PAGER = "bat --plain";
+      FX_THEME = "🥝";
     };
     sessionPath = [
       "$HOME/.local/bin"

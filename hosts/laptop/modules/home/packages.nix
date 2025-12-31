@@ -28,6 +28,7 @@
     flutter
 
     # Utils
+    fx
     ncdu
     btop
     nvtopPackages.full

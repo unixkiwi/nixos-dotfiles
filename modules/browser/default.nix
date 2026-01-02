@@ -163,10 +163,6 @@
       };
       # Extensions
       ExtensionSettings = {
-        "*" = {
-          installation_mode = "blocked";
-          blocked_install_message = "Extensions must be declared and installed within the nix config!";
-        };
         "uBlock0@raymondhill.net" = {
           default_area = "navbar";
           installation_mode = "force_installed";

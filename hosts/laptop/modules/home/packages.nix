@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     fastfetch
-    alacritty
 
     # Online
     signal-desktop
@@ -25,7 +24,7 @@
     # Languages
     cargo
     rustc
-    flutter
+    devenv
 
     # Utils
     fx

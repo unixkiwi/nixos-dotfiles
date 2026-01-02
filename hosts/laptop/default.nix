@@ -27,6 +27,12 @@ inputs.nixpkgs.lib.nixosSystem {
           "flakes"
         ];
 
+        # devenv
+        trusted-users = [
+          "root"
+          "kiwi"
+        ];
+
         # Auto optimise
         auto-optimise-store = true;
 

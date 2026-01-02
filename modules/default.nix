@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./shell
     ./nvim
@@ -11,5 +12,6 @@
     ./utilities
     ./hypr
     ./browser
+    ./terminal
   ];
 }

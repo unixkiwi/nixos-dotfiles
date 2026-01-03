@@ -18,8 +18,10 @@
 
     # Media stuff
     darktable
+    rapidraw
     vlc
     localsend
+    inkscape
 
     # Languages
     cargo

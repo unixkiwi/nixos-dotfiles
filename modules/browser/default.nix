@@ -25,6 +25,7 @@
           "https://github.com"
           "https://beste.schule"
           "https://monkeytype.com"
+          "https://google.com"
         ];
       };
       FirefoxHome = {

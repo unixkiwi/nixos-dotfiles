@@ -55,6 +55,8 @@ inputs.nixpkgs.lib.nixosSystem {
         ];
       };
 
+      environment.sessionVariables.MOZ_ENABLE_WAYLAND = "1";
+
       # Backup Home Manager cleanup
       system.userActivationScripts = {
         removeConflictionBkpFiles = {

@@ -27,6 +27,11 @@
     cargo
     rustc
     devenv
+    nodejs
+    python3
+    go
+    gcc
+    binutils
 
     # Utils
     fx
@@ -41,5 +46,7 @@
     tealdeer
     ripgrep
     gparted
+    qalculate-gtk
+    unar
   ];
 }

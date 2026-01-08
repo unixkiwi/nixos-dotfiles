@@ -9,6 +9,7 @@ inputs.nixpkgs.lib.nixosSystem {
         ./modules/system
         ./modules/development
         ./modules/nixos/desktop.nix
+        ./modules/nixos/distrobox.nix
         ./modules/nixos/flatpak.nix
         ./modules/nixos/nvidia.nix
         ./modules/nixos/packages.nix

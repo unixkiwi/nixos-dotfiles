@@ -46,6 +46,7 @@
             inputs.stylix.homeModules.stylix
             ./hosts/arch
           ];
+        };
       };
     };
 }

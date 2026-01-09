@@ -38,5 +38,14 @@
       nixosConfigurations = {
         laptop = import ./hosts/laptop { inherit inputs; };
       };
+      homeConfigurations = {
+        kiwi = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            inputs.stylix.homeModules.stylix
+            ./hosts/arch
+          ];
+      };
     };
 }

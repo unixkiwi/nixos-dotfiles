@@ -4,6 +4,7 @@
   pkgs,
   ...
 }: {
+  xdg.autostart.enable = true;
   programs = {
     btop = {
       enable = true;

@@ -1,6 +1,10 @@
 { pkgs, ... }:
 {
   home = {
+    file.".config/plasma-workspace/env/nix-desktop-integration.sh".text = ''
+      #!/bin/sh
+      export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
+    '';
     shellAliases = {
       "ls" = "eza";
       "la" = "ls -la";
@@ -14,16 +18,15 @@
       "cat" = "bat --plain";
 
       "rebuild" = "sudo nixos-rebuild switch --flake .";
+      "hmswitch" = "home-manager switch --flake /home/kiwi/nixos-dotfiles#kiwi -b home-manager-backup";
     };
     sessionVariables = {
       EDITOR = "nvim";
       MANPAGER = "bat --plain";
       PAGER = "bat --plain";
       FX_THEME = "🥝";
+      PATH = "/usr/bin:$HOME/.nix-profile/bin:$HOME/.local/bin:$HOME/FlutterSDK/flutter/bin:$PATH";
     };
-    sessionPath = [
-      "$HOME/.local/bin"
-    ];
   };
 
   home.packages = with pkgs; [
@@ -31,11 +34,20 @@
   ];
 
   programs = {
+    bash.enable = true;
     fish = {
       enable = true;
       generateCompletions = true;
       shellInit = "set fish_greeting";
+      interactiveShellInit = ''
+        # Source the nix-profile variables for the current session
+        if test -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+            # Use a tool like foreign-env or manual parsing if necessary,
+            # but usually HM's fish module handles basic PATH/XDG.
+        end
+      '';
     };
+    lazygit.enable = true;
     zoxide = {
       enable = true;
       enableFishIntegration = true;

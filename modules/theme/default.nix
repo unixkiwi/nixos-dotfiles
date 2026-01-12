@@ -52,6 +52,7 @@
       nvf.enable = false;
       starship.enable = false;
       wofi.enable = false;
+      waybar.enable = false;
       vscode.enable = false;
     };
   };

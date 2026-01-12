@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:
+let
+  c = config.lib.stylix.colors;
+in
 {
   home.packages = with pkgs; [
     nautilus
@@ -72,7 +75,7 @@
             margin: 0px 0px 5px 0px;
         }
 
-        #entry:selected {
+        #entry:selected {T
             border-radius: 7px;
         }
 
@@ -83,6 +86,178 @@
         #text {
             font-family: monospace;
             font-size: 15px;
+        }
+      '';
+    };
+
+    hyprpanel = {
+      enable = true;
+    };
+
+    waybar = {
+      enable = false;
+      settings = {
+        mainBar = {
+          layer = "top";
+          position = "top";
+          height = 20;
+          spacing = 0;
+
+          modules-left = [ "hyprland/workspaces" ];
+          modules-center = [ "hyprland/window" ];
+          modules-right = [
+            "wireplumber"
+            "tray"
+            "network"
+            "temperature"
+            "battery"
+            "clock"
+          ];
+
+          "hyprland/workspaces" = {
+            disable-scroll = true;
+            all-outputs = true;
+            warp-on-scroll = false;
+            format = "{icon}";
+          };
+
+          "hyprland/window" = {
+            format = "{initialTitle}";
+            icon = true;
+            separate-outputs = true;
+          };
+
+          "wireplumber" = {
+            format = "{volume}%";
+            format-muted = "";
+            on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
+          };
+
+          "tray" = {
+            spacing = 10;
+          };
+
+          "clock" = {
+            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+            format-alt = "{:%Y-%m-%d}";
+          };
+
+          "temperature" = {
+            critical-threshold = 90;
+            format = "{temperatureC}°C {icon}";
+            format-icons = [
+              ""
+              ""
+              ""
+            ];
+          };
+
+          "battery" = {
+            states = {
+              warning = 30;
+              critical = 15;
+            };
+            format = "{capacity}% {icon}";
+            format-full = "{capacity}% {icon}";
+            format-charging = "{capacity}% ";
+            format-plugged = "{capacity}% ";
+            format-alt = "{time} {icon}";
+            format-icons = [
+              ""
+              ""
+              ""
+              ""
+              ""
+            ];
+          };
+
+          "network" = {
+            format-wifi = "{essid} ({signalStrength}%) ";
+            format-ethernet = "{ipaddr}/{cidr} ";
+            tooltip-format = "{ifname} via {gwaddr} ";
+            format-linked = "{ifname} (No IP) ";
+            format-disconnected = "Disconnected !";
+            format-alt = "{ifname}: {ipaddr}/{cidr}";
+          };
+        };
+      };
+      style = ''
+        * {
+          font-family: "CaskaydiaCove Nerd Font", "Font Awesome 6 Free", sans-serif;
+          font-size: 1em;
+          font-weight: bold;
+          transition: none;
+          box-shadow: none;
+          text-shadow: none;
+        }
+
+        window#waybar {
+          background-color: #${c.base00};
+          color: #${c.base05};     
+        }
+
+        window#waybar.hidden {
+          opacity: 0.2;
+        }
+
+        button {
+          padding: 0.3em 0.6em;
+        }
+
+        #window {
+          color: #${c.base05};
+        }
+
+        #workspaces button {
+          background-color: #${c.base01};
+          color: #${c.base05};  
+          font-weight: bolder;
+          margin: 0.3rem 0.2rem;
+          border-radius: 7px;
+        }
+
+        #workspaces button:hover {
+          background-color: #${c.base02};
+          color: #${c.base06};
+        }
+
+        #workspaces button.active {
+          background-color: #${c.base0D};
+          color: #${c.base00};
+        }
+
+        #workspaces button.urgent {
+          background-color: #${c.base08};
+          color: #${c.base00};
+        }
+
+        #clock,
+        #battery,
+        #temperature,
+        #network,
+        #tray,
+        #wireplumber {
+          padding: 0.2em 1em;
+          margin: 0.3em 0.2em;
+          border-radius: 7px;
+          background-color: #${c.base01};
+        }
+
+        #battery.critical:not(.charging),
+        #network.disconnected,
+        #temperature.critical {
+          background-color: #${c.base08};
+          color: #${c.base00};
+        }
+
+        #tray > .passive {
+          -gtk-icon-effect: dim;
+        }
+
+        #tray > .needs-attention {
+          -gtk-icon-effect: highlight;
+          background-color: #${c.base08};
+          color: #${c.base00};
         }
       '';
     };
@@ -164,12 +339,13 @@
           render_power = 10;
         };
         blur = {
-          enabled = true;
+          enabled = false;
           size = 3;
           passes = 3;
           ignore_opacity = true;
           new_optimizations = true;
           vibrancy = 0.1696;
+          xray = false;
         };
       };
 

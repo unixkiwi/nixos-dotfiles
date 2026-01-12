@@ -18,7 +18,8 @@
       "cat" = "bat --plain";
 
       "rebuild" = "sudo nixos-rebuild switch --flake .";
-      "hmswitch" = "home-manager switch --flake /home/kiwi/nixos-dotfiles#kiwi -b home-manager-backup";
+      "hmswitch" =
+        "git add -A && home-manager switch --flake /home/kiwi/nixos-dotfiles#kiwi -b home-manager-backup";
     };
     sessionVariables = {
       EDITOR = "nvim";

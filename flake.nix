@@ -39,6 +39,11 @@
         laptop = import ./hosts/laptop { inherit inputs; };
       };
       homeConfigurations = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        backupFileExtension = "home-manager-backup";
+        overwriteBackup = true;
+
         kiwi = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs; };

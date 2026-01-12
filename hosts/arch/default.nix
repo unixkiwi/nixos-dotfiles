@@ -46,7 +46,7 @@
   services.network-manager-applet.enable = true;
 
   home.sessionVariables = {
-    TEST = "HELLO";
+    MOZ_ENABLE_WAYLAND = "1";
   };
 
   fonts.fontconfig.enable = true;

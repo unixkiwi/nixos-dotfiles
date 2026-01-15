@@ -26,7 +26,7 @@
       MANPAGER = "bat --plain";
       PAGER = "bat --plain";
       FX_THEME = "🥝";
-      PATH = "/usr/bin:$HOME/.nix-profile/bin:$HOME/.local/bin:$HOME/FlutterSDK/flutter/bin:$PATH";
+      PATH = "/usr/bin:$HOME/.nix-profile/bin:$HOME/.local/bin:$HOME/FlutterSDK/flutter/bin:$HOME/.cargo/bin:$PATH";
     };
   };
 

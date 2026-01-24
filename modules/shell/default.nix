@@ -22,11 +22,12 @@
         "git add -A && home-manager switch --flake /home/kiwi/nixos-dotfiles#kiwi -b home-manager-backup";
     };
     sessionVariables = {
+      JAVA_HOME = "/usr/lib/jvm/java-17-openjdk";
       EDITOR = "nvim";
       MANPAGER = "bat --plain";
       PAGER = "bat --plain";
       FX_THEME = "🥝";
-      PATH = "/usr/bin:$HOME/.nix-profile/bin:$HOME/.local/bin:$HOME/FlutterSDK/flutter/bin:$HOME/.cargo/bin:$PATH";
+      PATH = "/usr/bin:$HOME/.nix-profile/bin:$HOME/.local/bin:$HOME/FlutterSDK/flutter/bin:$HOME/.cargo/bin:$JAVA_HOME/bin:$PATH";
     };
   };
 

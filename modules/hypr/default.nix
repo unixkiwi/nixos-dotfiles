@@ -405,7 +405,6 @@ in
         "$mainMod SHIFT, V, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
         "$mainMod, SUPER_L, exec, $menu"
         "$mainMod, P, pseudo,"
-        "$mainMod, S, togglesplit,"
         "$mainMod, C, exec, qalculate-gtk"
         "$mainMod, B, exec, alacritty --class floating -e btop"
         "$mainMod SHIFT, R, exec, killall waybar; waybar &"
